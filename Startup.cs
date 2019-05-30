@@ -49,7 +49,12 @@ namespace AspNetCoreIdentityLocalization
             services.AddLocalization(options => options.ResourcesPath = "Resources");
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
-                .AddViewLocalization();
+                .AddViewLocalization()
+                .AddDataAnnotationsLocalization(options =>
+                {
+                    options.DataAnnotationLocalizerProvider = (type, factory) =>
+                        factory.Create(typeof(DataAnnotationSharedResource));
+                });
 
             services.Configure<RequestLocalizationOptions>(options =>
             {
