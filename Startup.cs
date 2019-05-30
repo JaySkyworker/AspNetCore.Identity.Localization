@@ -43,6 +43,7 @@ namespace AspNetCoreIdentityLocalization
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>()
                 //.AddDefaultUI(UIFramework.Bootstrap4)
+                .AddErrorDescriber<LocalizedIdentityErrorDescriber>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddLocalization(options => options.ResourcesPath = "Resources");
