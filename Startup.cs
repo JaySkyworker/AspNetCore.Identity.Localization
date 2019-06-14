@@ -77,7 +77,7 @@ namespace AspNetCoreIdentityLocalization
                     {
                         new CultureInfo("en"),
                         new CultureInfo("zh-TW"),
-                        new CultureInfo("fr"),
+                        new CultureInfo("zu-ZA"), //for fall back testing
                     };
 
                 options.DefaultRequestCulture = new RequestCulture("en");
