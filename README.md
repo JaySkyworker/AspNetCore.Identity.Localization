@@ -1,6 +1,14 @@
 # AspNetCore.Identity.Localization
 
-Welcome to Sample Application for Localizing Asp.Net Core MVC 2.2 with Identity pages.
+It is quick and simple to create an english web app with Identity 
+using Asp.Net Core Mvc 2.2 .
+However, if you want to develop a non-english app, you will find many 
+obstacles prevent you to have the same experiences.
+
+With many project demonstrate how to localized it, we need a more complete
+solution for most of the issues, especially for error messages.
+
+Enjoy!
 
 > **NOTE**: Not all UI text are localized!
 > 
@@ -25,6 +33,9 @@ See this [commit](https://github.com/JaySkyworker/AspNetCore.Identity.Localizati
 
 ## View / Page / Controller Localization
 
+There are many ways to Localized these general text, I choose to use original english text as Key 
+to the resources for quick english fall back.
+
 See this [commit](https://github.com/JaySkyworker/AspNetCore.Identity.Localization/commit/989fce76be2bcf71862976c5a2b3b2459e533af9)
  and this [commit](https://github.com/JaySkyworker/AspNetCore.Identity.Localization/commit/ba281e355c426634b022f050c0b593618874ffb2)
 
@@ -36,11 +47,38 @@ Ref:
 
 ## Model / DataAnnotation Localization
 
+For Models and DataAnnotations with assigned message, Ex:
+```csharp
+    [Display(Name = "Confirm password")]
+    [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+    public string ConfirmPassword { get; set; }
+```
+Use `DataAnnotationsLocalization` to localize it, However this does NOT localize Default ErrorMessages.
+I will cover it in next section.
+
 See this [commit](https://github.com/JaySkyworker/AspNetCore.Identity.Localization/commit/7c706dab8494c118f0a4c8e7d7522ba705a7467f).
+
+- In `Starup.cs`
+  - Added `.AddDataAnnotationsLocalization()` after `AddMvc()`.
+- Added `DataAnnotationSharedResource.resx`.
 
 ### Default Validation Error Localization
 
+```csharp
+    [Required]
+    [EmailAddress]
+    [Display(Name = "LoginEmail")]
+    public string Email { get; set; }
+```
+Default ErrorMessages for `[Required]`, `[EmailAddress]` and etc. 
+can only be localized by `.ModelMetadataDetailsProviders`
+
 See this [commit](https://github.com/JaySkyworker/AspNetCore.Identity.Localization/commit/2bb5422c6b8556133e047c34386d7dd886e2375d).
+
+- In `Starup.cs`
+  - Added `LocalizedValidationMetadataProvider` and related classes.
+  - In Mvc Options, Added `ModelMetadataDetailsProviders.Add()`
+- Added `ValidationMetadataSharedResource.resx `.
 
 Ref:
 * https://github.com/ForEvolve/ForEvolve.AspNetCore.Localization
@@ -54,7 +92,7 @@ https://github.com/ridercz/Altairis.ConventionalMetadataProviders
 
 ## Identity Validation Error Localization
 
-Identity itself validates Password settings and etc. And generates some ErrorMessages that needs 
+Identity itself validates Password settings, etc. And generates some ErrorMessages that needs 
 to be localized.
 
 See this [commit](https://github.com/JaySkyworker/AspNetCore.Identity.Localization/commit/bae9cab2ac5684aa720de15adf379c8e7f4b46cc).
@@ -81,4 +119,4 @@ Language contributions are welcome!
 1. Add the new language to the `supportedCultures` list before `zu-ZA` in `Startup.cs`.
 1. Open a pull request.
 
-I will do my best to integrates PR as fast as possible.
+I will do my best to integrate PR as fast as possible.
