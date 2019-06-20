@@ -91,11 +91,11 @@ Ref:
 #### ConventionalDisplayMetadataProvider
 
 For Display name, the provider is based on conventions and tries to 
-find metadata based on the following naming scheme:
+find resource key based on the following naming scheme:
 
 > [[Namespace_]TypeName_]PropertyName
 
-The provider will try to get values of the following keys, 
+The provider will search resource key from more specific to less, 
 stopping on the first where it succeeds:
 
 - `App_Areas_Identity_Pages_Account_LoginModel_InputModel_Email`
@@ -108,12 +108,11 @@ stopping on the first where it succeeds:
 
 #### ConventionalValidationMetadataProvider
 
-For Default Validation ErrorMessages, same rule applied and tries to 
-find metadata based on the following naming scheme:
+For Default Validation ErrorMessages, same rule applied:
 
 > [[[Namespace_]TypeName_]PropertyName_]ValidatorType
 
-The provider will try to get values of the following keys, 
+The provider will search resource key from more specific to less, 
 stopping on the first where it succeeds:
 
 - `App_Areas_Identity_Pages_Account_LoginModel_InputModel_Email_Required`
@@ -126,12 +125,6 @@ stopping on the first where it succeeds:
 
 You should keep one message for each validation type for Default ErrorMessages.
 See [DefaultValidationMessages.resx](https://github.com/JaySkyworker/AspNetCore.Identity.Localization/blob/feature/ConventionalMetadataProviders/Resources/DefaultValidationMessages.resx)
-
-
-
-
-
-
 
 ## Identity Validation Error Localization
 
