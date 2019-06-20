@@ -6,6 +6,16 @@
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Services\BaseLocalizedValidationAttributeAdapter.cs" />
+    <Compile Remove="Services\DefaultLocalizedValidationAttributeAdapter.cs" />
+    <Compile Remove="Services\IEmailSender.cs" />
+    <Compile Remove="Services\ILocalizedValidationAttributeAdapter.cs" />
+    <Compile Remove="Services\ILocalizedValidationMetadataProvider.cs" />
+    <Compile Remove="Services\LocalizedValidationMetadataProvider.cs" />
+    <Compile Remove="Services\StringLengthLocalizedValidationAttributeAdapter.cs" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
@@ -15,6 +25,21 @@
 
 
   <ItemGroup>
+    <Compile Update="Resources\DefaultBindingMessages.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DefaultBindingMessages.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\DefaultValidationMessages.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DefaultValidationMessages.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\DisplayMetadataSharedResource.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DisplayMetadataSharedResource.resx</DependentUpon>
+    </Compile>
     <Compile Update="Resources\LocalizedIdentityErrorMessages.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -29,6 +54,22 @@
 
 
   <ItemGroup>
+    <EmbeddedResource Update="Resources\DefaultBindingMessages.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DefaultBindingMessages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\DefaultValidationMessages.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DefaultValidationMessages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\DisplayMetadataSharedResource.zh-TW.resx">
+      <LastGenOutput>DisplaySharedResource.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\DisplayMetadataSharedResource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DisplayMetadataSharedResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Update="Resources\LocalizedIdentityErrorMessages.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>LocalizedIdentityErrorMessages.Designer.cs</LastGenOutput>
