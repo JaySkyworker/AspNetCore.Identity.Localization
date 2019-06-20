@@ -40,16 +40,13 @@ namespace AspNetCoreIdentityLocalization.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required]
-            [EmailAddress(ErrorMessage = "This will be overwritten by default localized message")]
-            [Display(Name = "LoginEmail")]
+            [EmailAddress(ErrorMessage = "Known issue: This will be overwritten by default localized message")]
             public string Email { get; set; }
 
             [Required]
             [DataType(DataType.Password)]
-            [Display(Name = "Password")]
             public string Password { get; set; }
 
-            [Display(Name = "Remember me?")]
             public bool RememberMe { get; set; }
         }
 

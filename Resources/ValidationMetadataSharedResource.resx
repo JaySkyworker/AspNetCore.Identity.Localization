@@ -117,43 +117,46 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="CompareAttribute_ErrorMessage" xml:space="preserve">
-    <value>'{0}' and '{1}' do not match.</value>
+  <data name="Compare" xml:space="preserve">
+    <value>The '{0}' and '{1}' field do not match.</value>
   </data>
-  <data name="CreditCardAttribute_ErrorMessage" xml:space="preserve">
-    <value>The {0} field is not a valid credit card number.</value>
+  <data name="CreditCard" xml:space="preserve">
+    <value>The {0} field must contain valid card number.</value>
   </data>
-  <data name="EmailAddressAttribute_ErrorMessage" xml:space="preserve">
-    <value>The {0} field is not a valid e-mail address.</value>
+  <data name="CustomValidation" xml:space="preserve">
+    <value>The {0} field is invalid.</value>
   </data>
-  <data name="FileExtensionsAttribute_ErrorMessage" xml:space="preserve">
-    <value>The {0} field only accepts files with the following extensions: {1}</value>
+  <data name="EmailAddress" xml:space="preserve">
+    <value>The {0} field must contain valid e-mail address.</value>
   </data>
-  <data name="MaxLengthAttribute_ErrorMessage" xml:space="preserve">
-    <value>The field {0} must be a string or array type with a maximum length of '{1}'.</value>
+  <data name="FileExtensions" xml:space="preserve">
+    <value>The {0} field can contain only files with the following extensions: {1}</value>
   </data>
-  <data name="MinLengthAttribute_ErrorMessage" xml:space="preserve">
-    <value>The field {0} must be a string or array type with a minimum length of '{1}'.</value>
+  <data name="InputModel_ConfirmPassword_Compare" xml:space="preserve">
+    <value>The password and confirmation password do not match.</value>
   </data>
-  <data name="PhoneAttribute_ErrorMessage" xml:space="preserve">
-    <value>The {0} field is not a valid phone number.</value>
+  <data name="MaxLength" xml:space="preserve">
+    <value>The {0} field can have maximum of {1} characters.</value>
   </data>
-  <data name="RangeAttribute_ErrorMessage" xml:space="preserve">
-    <value>The field {0} must be between {1} and {2}.</value>
+  <data name="MinLength" xml:space="preserve">
+    <value>The {0} field must have minimum of {1} character.</value>
   </data>
-  <data name="RegularExpressionAttribute_ErrorMessage" xml:space="preserve">
-    <value>The field {0} must match the regular expression '{1}'.</value>
+  <data name="Phone" xml:space="preserve">
+    <value>The {0} field must contain a valid phone number.</value>
   </data>
-  <data name="RequiredAttribute_ErrorMessage" xml:space="preserve">
+  <data name="Range" xml:space="preserve">
+    <value>The {0} field must contain value from {1} to {2}.</value>
+  </data>
+  <data name="RegularExpression" xml:space="preserve">
+    <value>The {0} field must contain value conforming to regular expression '{1}'.</value>
+  </data>
+  <data name="Required" xml:space="preserve">
     <value>The {0} field is required.</value>
   </data>
-  <data name="StringLengthAttribute_ErrorMessage" xml:space="preserve">
-    <value>The {0} must be at maximum {1} characters long.</value>
+  <data name="StringLength" xml:space="preserve">
+    <value>The {0} field must be from {2} to {1} characters long.</value>
   </data>
-  <data name="StringLengthAttribute_ErrorMessageIncludingMinimum" xml:space="preserve">
-    <value>The {0} must be at least {2} and at maximum {1} characters long.</value>
-  </data>
-  <data name="UrlAttribute_ErrorMessage" xml:space="preserve">
-    <value>The {0} field is not a valid fully-qualified http, https, or ftp URL.</value>
+  <data name="Url" xml:space="preserve">
+    <value>The {0} field must contain valid HTTP, HTTPS or FTP address.</value>
   </data>
 </root>

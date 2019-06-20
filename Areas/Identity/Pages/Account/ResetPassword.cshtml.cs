@@ -27,18 +27,15 @@ namespace AspNetCoreIdentityLocalization.Areas.Identity.Pages.Account
         {
             [Required]
             [EmailAddress]
-            [Display(Name = "LoginEmail")]
             public string Email { get; set; }
 
             [Required]
             [StringLength(100,  MinimumLength = 6)]
             [DataType(DataType.Password)]
-            [Display(Name = "Password")]
             public string Password { get; set; }
 
             [DataType(DataType.Password)]
-            [Display(Name = "Confirm password")]
-            [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+            [Compare("Password")] // Use ConventionalValidationMetadata Error Message
             public string ConfirmPassword { get; set; }
 
             public string Code { get; set; }

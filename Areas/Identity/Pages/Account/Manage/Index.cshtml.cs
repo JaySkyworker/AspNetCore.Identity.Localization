@@ -49,7 +49,6 @@ namespace AspNetCoreIdentityLocalization.Areas.Identity.Pages.Account.Manage
             public string Email { get; set; }
 
             [Phone]
-            [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
         }
 
