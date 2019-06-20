@@ -38,6 +38,7 @@ to the resources for quick english fall back.
 
 See this [commit](https://github.com/JaySkyworker/AspNetCore.Identity.Localization/commit/989fce76be2bcf71862976c5a2b3b2459e533af9)
  and this [commit](https://github.com/JaySkyworker/AspNetCore.Identity.Localization/commit/ba281e355c426634b022f050c0b593618874ffb2)
+.
 
 Ref:
 
@@ -47,13 +48,14 @@ Ref:
 
 ## Model / DataAnnotation Localization
 
-For Models and DataAnnotations with assigned message, Ex:
+For Models and DataAnnotations with assigned text, Ex:
 ```csharp
     [Display(Name = "Confirm password")]
     [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
     public string ConfirmPassword { get; set; }
 ```
-Use `DataAnnotationsLocalization` to localize it, However this does NOT localize Default ErrorMessages.
+Use `DataAnnotationsLocalization` to localize it, 
+However this does NOT localize default display name and default ErrorMessages.
 I will cover it in next section.
 
 See this [commit](https://github.com/JaySkyworker/AspNetCore.Identity.Localization/commit/7c706dab8494c118f0a4c8e7d7522ba705a7467f).
@@ -62,32 +64,73 @@ See this [commit](https://github.com/JaySkyworker/AspNetCore.Identity.Localizati
   - Added `.AddDataAnnotationsLocalization()` after `AddMvc()`.
 - Added `DataAnnotationSharedResource.resx`.
 
-### Default Validation Error Localization
+### ConventionalMetadataProviders
 
 ```csharp
     [Required]
     [EmailAddress]
-    [Display(Name = "LoginEmail")]
     public string Email { get; set; }
 ```
+Default Display name for `Email` and 
 Default ErrorMessages for `[Required]`, `[EmailAddress]` and etc. 
-can only be localized by `.ModelMetadataDetailsProviders`
+can be localized by `.ModelMetadataDetailsProviders`
 
-See this [commit](https://github.com/JaySkyworker/AspNetCore.Identity.Localization/commit/2bb5422c6b8556133e047c34386d7dd886e2375d).
+See this [commit](https://github.com/JaySkyworker/AspNetCore.Identity.Localization/commit/326b72d08d83fd7ef8b52795c63a55cf5d5eaa22)
+and this [commit](https://github.com/JaySkyworker/AspNetCore.Identity.Localization/commit/20d2b24716c3eb194d9de68484d939e27bf5c2bc)
+.
 
 - In `Starup.cs`
-  - Added `LocalizedValidationMetadataProvider` and related classes.
-  - In Mvc Options, Added `ModelMetadataDetailsProviders.Add()`
-- Added `ValidationMetadataSharedResource.resx `.
+  - Added `ConventionalDisplayMetadataProvider`, `ConventionalValidationMetadataProvider`  and related classes.
+  - In Mvc Options, Added `options.SetConventionalMetadataProviders()` to Init.
+- Added `ValidationMetadataSharedResource.resx` for Validation ErrorMessages.
+- Added `DisplayMetadataSharedResource.resx` for Display name.
 
 Ref:
-* https://github.com/ForEvolve/ForEvolve.AspNetCore.Localization
+* https://github.com/ridercz/Altairis.ConventionalMetadataProviders
 
-### ConventionalMetadataProviders (Not in this Sample)
+#### ConventionalDisplayMetadataProvider
 
-This might be a better way to localize Model and DataAnnotations but not 
-in this sample.
-https://github.com/ridercz/Altairis.ConventionalMetadataProviders
+For Display name, the provider is based on conventions and tries to 
+find metadata based on the following naming scheme:
+
+> [[Namespace_]TypeName_]PropertyName
+
+The provider will try to get values of the following keys, 
+stopping on the first where it succeeds:
+
+- `App_Areas_Identity_Pages_Account_LoginModel_InputModel_Email`
+- `Areas_Identity_Pages_Account_LoginModel_InputModel_Email`
+- `Identity_Pages_Account_LoginModel_InputModel_Email`
+- ...
+- `LoginModel_InputModel_Email`
+- `InputModel_Email`
+- `Email`
+
+#### ConventionalValidationMetadataProvider
+
+For Default Validation ErrorMessages, same rule applied and tries to 
+find metadata based on the following naming scheme:
+
+> [[[Namespace_]TypeName_]PropertyName_]ValidatorType
+
+The provider will try to get values of the following keys, 
+stopping on the first where it succeeds:
+
+- `App_Areas_Identity_Pages_Account_LoginModel_InputModel_Email_Required`
+- `Areas_Identity_Pages_Account_LoginModel_InputModel_Email_Required`
+- `Identity_Pages_Account_LoginModel_InputModel_Email_Required`
+- ...
+- `InputModel_Email_Required`
+- `Email_Required`
+- `Required`
+
+You should keep one message for each validation type for Default ErrorMessages.
+See [DefaultValidationMessages.resx](https://github.com/JaySkyworker/AspNetCore.Identity.Localization/blob/feature/ConventionalMetadataProviders/Resources/DefaultValidationMessages.resx)
+
+
+
+
+
 
 
 ## Identity Validation Error Localization
