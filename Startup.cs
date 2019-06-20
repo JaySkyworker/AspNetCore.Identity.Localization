@@ -50,18 +50,9 @@ namespace AspNetCoreIdentityLocalization
 
             services.AddLocalization(options => options.ResourcesPath = "Resources");
 
-            var localizedValidationMetadataProvider = new LocalizedValidationMetadataProvider<ValidationMetadataSharedResource>(
-                // Custom multi-messages adapter that duplicate the attribute logic
-                // A better solution is welcome :)
-                new StringLengthLocalizedValidationAttributeAdapter(),
-
-                // Keep this one last
-                new DefaultLocalizedValidationAttributeAdapter()
-            );
-
             services.AddMvc(options =>
                 {
-                    options.ModelMetadataDetailsProviders.Add(localizedValidationMetadataProvider);
+                    options.SetConventionalMetadataProviders<Resources.DisplayMetadataSharedResource , Resources.ValidationMetadataSharedResource>();
                 })
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
                 .AddViewLocalization()
