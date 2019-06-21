@@ -55,9 +55,10 @@ namespace AspNetCoreIdentityLocalization.Services{
             }
 
             // Search by name from more specific to less specific
-            var nameParts = fullPropertyName.Split('.', '+');
-            var resourceKeyName = string.Join("_", nameParts) + resourceKeySuffix;
-            for (var i = 0; i < nameParts.Length; i++)
+            var resourceKeyName = fullPropertyName.Replace('.', '_').Replace('+', '_');
+            var namePartsCount = resourceKeyName.Length - resourceKeyName.Replace("_", string.Empty).Length + 1;
+            resourceKeyName += resourceKeySuffix;
+            for (var i = 0; i < namePartsCount; i++)
             {
                 // Get the resource key to lookup
                 if (i > 0) resourceKeyName = resourceKeyName.Substring(resourceKeyName.IndexOf("_") + 1);

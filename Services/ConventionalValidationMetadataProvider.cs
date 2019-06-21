@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata;
 
 namespace AspNetCoreIdentityLocalization.Services{
     public class ConventionalValidationMetadataProvider : IValidationMetadataProvider {
-        private const string AttributeNameSuffix = "Attribute";
         private readonly ResourceManager _resourceManager;
         private readonly Type _resourceType;
 
@@ -36,8 +35,7 @@ namespace AspNetCoreIdentityLocalization.Services{
                 if (!string.IsNullOrWhiteSpace(validationAttribute.ErrorMessageResourceName) && validationAttribute.ErrorMessageResourceType != null) continue;
 
                 // Get attribute name without the "Attribute" suffix
-                var attributeName = validationAttribute.GetType().Name;
-                if (attributeName.EndsWith(AttributeNameSuffix, StringComparison.Ordinal)) attributeName = attributeName.Substring(0, attributeName.Length - AttributeNameSuffix.Length);
+                var attributeName = validationAttribute.GetType().Name.Replace("Attribute", "");
 
                 var keyName = this.GetResourceKeyName(context.Key, attributeName);
 
@@ -67,11 +65,10 @@ namespace AspNetCoreIdentityLocalization.Services{
                 fullPropertyName = metadataIdentity.Name;
             }
 
-            fullPropertyName += "." + attributeName;
             // Search by name from more specific to less specific
-            var nameParts = fullPropertyName.Split('.', '+');
-            var resourceKeyName = string.Join("_", nameParts);
-            for (var i = 0; i < nameParts.Length; i++)
+            var resourceKeyName = fullPropertyName.Replace('.', '_').Replace('+', '_') + "_" + attributeName ;
+            var namePartsCount = resourceKeyName.Length - resourceKeyName.Replace("_", string.Empty).Length + 1;
+            for (var i = 0; i < namePartsCount; i++)
             {
                 // Get the resource key to lookup
                 if (i > 0) resourceKeyName = resourceKeyName.Substring(resourceKeyName.IndexOf("_") + 1);
