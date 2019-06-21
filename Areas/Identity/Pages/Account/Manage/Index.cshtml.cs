@@ -31,7 +31,6 @@ namespace AspNetCoreIdentityLocalization.Areas.Identity.Pages.Account.Manage
             _localizer = localizer;
         }
 
-        [Display(Name = "LoginEmail")]
         public string Username { get; set; }
 
         public bool IsEmailConfirmed { get; set; }

@@ -61,6 +61,15 @@ namespace AspNetCoreIdentityLocalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Username.
+        /// </summary>
+        public static string Account_Manage_IndexModel_Username {
+            get {
+                return ResourceManager.GetString("Account_Manage_IndexModel_Username", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Confirm new password.
         /// </summary>
         public static string ChangePasswordModel_InputModel_ConfirmPassword {
