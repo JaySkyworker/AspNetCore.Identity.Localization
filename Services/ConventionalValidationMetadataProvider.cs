@@ -37,7 +37,7 @@ namespace AspNetCoreIdentityLocalization.Services{
                 // Get attribute name without the "Attribute" suffix
                 var attributeName = validationAttribute.GetType().Name.Replace("Attribute", "");
 
-                var keyName = this.GetResourceKeyName(context.Key, attributeName);
+                var keyName = this._resourceManager.GetConventionalKeyName(context.Key, attributeName, null);
 
                 // Link to resource if exists
                 if (keyName != null){
@@ -50,37 +50,5 @@ namespace AspNetCoreIdentityLocalization.Services{
 
             }
         }
-
-        private string GetResourceKeyName(ModelMetadataIdentity metadataIdentity, string attributeName)
-        {
-            if (string.IsNullOrEmpty(metadataIdentity.Name)) return null;
-
-            string fullPropertyName;
-            if (!string.IsNullOrEmpty(metadataIdentity.ContainerType?.FullName))
-            {
-                fullPropertyName = metadataIdentity.ContainerType.FullName + "." + metadataIdentity.Name;
-            }
-            else
-            {
-                fullPropertyName = metadataIdentity.Name;
-            }
-
-            // Search by name from more specific to less specific
-            var resourceKeyName = fullPropertyName.Replace('.', '_').Replace('+', '_') + "_" + attributeName ;
-            var namePartsCount = resourceKeyName.Length - resourceKeyName.Replace("_", string.Empty).Length + 1;
-            for (var i = 0; i < namePartsCount; i++)
-            {
-                // Get the resource key to lookup
-                if (i > 0) resourceKeyName = resourceKeyName.Substring(resourceKeyName.IndexOf("_") + 1);
-
-                // Check if given value exists in resource
-                var keyExists = !(this._resourceManager.GetString(resourceKeyName) == null);
-                if (keyExists) return resourceKeyName;
-            }
-
-            // Not found
-            return null;
-        }
-
     }
 }
