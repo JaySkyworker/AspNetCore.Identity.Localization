@@ -1,5 +1,7 @@
 # AspNetCore.Identity.Localization
 
+[![Build Status](https://skyworkertech.visualstudio.com/jayskyworker/_apis/build/status/JaySkyworker.AspNetCore.Identity.Localization?branchName=master)](https://skyworkertech.visualstudio.com/jayskyworker/_build/latest?definitionId=1&branchName=master)
+
 It is quick and simple to create an english web app with Identity 
 using Asp.Net Core Mvc 2.2 .
 However, if you want to develop a non-english app, you will find many 
