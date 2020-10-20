@@ -77,7 +77,8 @@ Default Display name for `Email` and
 Default ErrorMessages for `[Required]`, `[EmailAddress]` and etc. 
 can be localized by `.ModelMetadataDetailsProviders`
 
-See this [commit](https://github.com/JaySkyworker/AspNetCore.Identity.Localization/commit/326b72d08d83fd7ef8b52795c63a55cf5d5eaa22)
+See this [commit](https://github.com/JaySkyworker/AspNetCore.Identity.Localization/commit/64e66eb79b6476e72918f97eb2aadd809421bda9)
+, this [commit](https://github.com/JaySkyworker/AspNetCore.Identity.Localization/commit/326b72d08d83fd7ef8b52795c63a55cf5d5eaa22)
 and this [commit](https://github.com/JaySkyworker/AspNetCore.Identity.Localization/commit/20d2b24716c3eb194d9de68484d939e27bf5c2bc)
 .
 
